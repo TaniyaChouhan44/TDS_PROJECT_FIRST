@@ -37,6 +37,7 @@ def load_vectorstore(path="vectorstore"):
     )
     return FAISS.load_local(path, dummy_embeddings, allow_dangerous_deserialization=True)
 
+
 # === Ask question using vector search + GPT ===
 def answer_question(question, vectorstore, k=5):
     question_vector = embed_text([question])[0]
