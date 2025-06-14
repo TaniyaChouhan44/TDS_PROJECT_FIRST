@@ -2,10 +2,7 @@ services:
   - type: web
     name: tds-p1
     runtime: python
-    region: oregon  # You can change this to "singapore", "frankfurt", etc.
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn main:app --host 0.0.0.0 --port ${PORT}
-    envVars:
-      - key: PORT
-        value: 10000
+    region: oregon  # or choose another region like frankfurt, singapore, etc.
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn main:app --host 0.0.0.0 --port 10000"
     plan: free
