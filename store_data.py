@@ -50,7 +50,7 @@ def embed_text(docs):
     embeddings = OpenAIEmbeddings(
         model="text-embedding-3-small",
         api_key=os.getenv("AIPROXY_TOKEN"),
-        base_url="https://aiproxy.sanand.workers.dev/openai/v1"
+        base_url="https://aipipe.org/openai/v1"  #https://aiproxy.sanand.workers.dev/openai/v1
     )
     return FAISS.from_documents(docs, embeddings)
 

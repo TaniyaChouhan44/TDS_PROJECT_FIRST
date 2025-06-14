@@ -6,26 +6,12 @@ import os
 import httpx
 from langchain_community.vectorstores import FAISS
 from langchain_openai import OpenAIEmbeddings
-import openai
 
 
 # === AI Proxy credentials ===
 AIPROXY_TOKEN = os.environ.get("AIPROXY_TOKEN")
-AIPROXY_BASE_URL = "https://aiproxy.sanand.workers.dev/openai"
+AIPROXY_BASE_URL = "https://aipipe.org/openai"       #https://aiproxy.sanand.workers.dev/openai
 print("🔐 AIPROXY_TOKEN from os.environ:", os.environ.get("AIPROXY_TOKEN"))
-
-
-openai.api_key = AIPROXY_TOKEN
-openai.api_base = AIPROXY_BASE_URL
-
-response = openai.ChatCompletion.create(
-    model="gpt-4o-mini",
-    messages=[
-        {"role": "user", "content": "Hello, who are you?"}
-    ]
-)
-
-print(response.choices[0].message["content"])
 
 # === Manual embedding function ===
 def embed_text(texts):
@@ -47,7 +33,7 @@ def load_vectorstore(path="vectorstore"):
     dummy_embeddings = OpenAIEmbeddings(
         model="text-embedding-3-small",
         api_key=os.getenv("AIPROXY_TOKEN"),
-        base_url="https://aiproxy.sanand.workers.dev/openai/v1"
+        base_url="https://aipipe.org/openai/v1/chat/completions" #https://aiproxy.sanand.workers.dev/openai/v1
     )
     return FAISS.load_local(path, dummy_embeddings, allow_dangerous_deserialization=True)
 
