@@ -29,14 +29,31 @@ def embed_text(texts):
         return [item["embedding"] for item in data["data"]]
 
 # === Load FAISS vectorstore ===
-def load_vectorstore(path="vectorstore"):
+'''def load_vectorstore(path="vectorstore"):
     dummy_embeddings = OpenAIEmbeddings(
         model="text-embedding-3-small",
         api_key=os.getenv("AIPROXY_TOKEN"),
         base_url="https://aiproxy.sanand.workers.dev/openai/v1"
     )
     return FAISS.load_local(path, dummy_embeddings, allow_dangerous_deserialization=True)
-
+'''
+def load_vectorstore(path="vectorstore"):
+    dummy_embeddings = OpenAIEmbeddings(
+        model="text-embedding-3-small",
+        api_key=os.getenv("AIPROXY_TOKEN"),
+        base_url="https://aiproxy.sanand.workers.dev/openai/v1"
+    )
+    try:
+        vs = FAISS.load_local(
+            folder_path=path,
+            embeddings=dummy_embeddings,
+            allow_dangerous_deserialization=True
+        )
+        print(f"✅ FAISS vectorstore loaded from {path}")
+        return vs
+    except Exception as e:
+        print(f"❌ Failed to load FAISS vectorstore: {e}")
+        raise
 
 # === Ask question using vector search + GPT ===
 def answer_question(question, vectorstore, k=5):

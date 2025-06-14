@@ -15,6 +15,12 @@ from preprocess import load_vectorstore, embed_text, answer_question
 load_dotenv()
 app = FastAPI()
 
+
+# 🧭 Compute project directory
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+VECTORSTORE_DIR = os.path.join(BASE_DIR, "vectorstore")
+
+
 # Enable CORS
 app.add_middleware(
     CORSMiddleware,
@@ -24,8 +30,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Load the FAISS vectorstore once on startup
-vectorstore = load_vectorstore()
+# 🌟 Load once, at startup
+vectorstore = load_vectorstore(VECTORSTORE_DIR)
 
 class QuestionRequest(BaseModel):
     question: str
