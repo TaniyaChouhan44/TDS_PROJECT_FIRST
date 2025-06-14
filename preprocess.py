@@ -10,7 +10,7 @@ from langchain_openai import OpenAIEmbeddings
 
 # === AI Proxy credentials ===
 AIPROXY_TOKEN = os.environ.get("AIPROXY_TOKEN")
-AIPROXY_BASE_URL = "https://aipipe.org/openai"       #https://aiproxy.sanand.workers.dev/openai
+AIPROXY_BASE_URL = "https://aiproxy.sanand.workers.dev/openai"
 print("🔐 AIPROXY_TOKEN from os.environ:", os.environ.get("AIPROXY_TOKEN"))
 
 # === Manual embedding function ===
@@ -33,7 +33,7 @@ def load_vectorstore(path="vectorstore"):
     dummy_embeddings = OpenAIEmbeddings(
         model="text-embedding-3-small",
         api_key=os.getenv("AIPROXY_TOKEN"),
-        base_url="https://aipipe.org/openai/v1/chat/completions" #https://aiproxy.sanand.workers.dev/openai/v1
+        base_url="https://aiproxy.sanand.workers.dev/openai/v1"
     )
     return FAISS.load_local(path, dummy_embeddings, allow_dangerous_deserialization=True)
 

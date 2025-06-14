@@ -9,7 +9,6 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from typing import List, Optional
 
-
 from preprocess import load_vectorstore, embed_text, answer_question
 
 load_dotenv()
@@ -39,7 +38,9 @@ class QuestionResponse(BaseModel):
     answer: str
     links: List[LinkItem]
 
-@app.post("/", response_model=QuestionResponse)
+
+
+@app.post("/api/", response_model=QuestionResponse)
 async def ask_question(data: QuestionRequest):
     try:
         answer, sources = answer_question(data.question, vectorstore)
@@ -60,7 +61,12 @@ async def ask_question(data: QuestionRequest):
             content={"error": str(e)}
         )
 
+
+@app.get("/")
+def home():
+    return {"message": "TDS Virtual TA is running!"}
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
-
