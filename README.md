@@ -19,7 +19,7 @@ This application was built to:
 
 ## 🚀 Deployment
 
-- 🌐 **API Endpoint**: `https://<your-railway-subdomain>.up.railway.app/api/`
+- 🌐 **API Endpoint**: `https://tds-p1-production-8094.up.railway.app`
 - ☁️ **Deployed via**: [Railway](https://railway.app/)
   - ✅ Switched to Railway after initial issues with Vercel’s timeout limits
 - 🧪 Supports POST requests with JSON input containing:
