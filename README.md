@@ -2,7 +2,7 @@
 
  # 🤖 TDS Virtual TA – Teaching Assistant Auto-Responder
 
-**TDS Virtual TA** is a smart API-based assistant designed to automatically answer student questions in the **Tools in Data Science (TDS)** course offered by **IIT Madras Online B.S. in Data Science**.
+**TDS Virtual TA** is a smart API-based assistant designed to automatically answer student questions in the **Tools in Data Science (TDS)** course offered by **IIT Madras B.S. in Data Science**.
 
 It leverages course content and Discourse forum discussions to generate relevant, helpful responses — acting like a virtual teaching assistant for your peers.
 
